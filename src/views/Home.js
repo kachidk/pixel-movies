@@ -110,7 +110,10 @@ function Home() {
                     <span className="flex"><div className="w-6 h-6 text-blue-500"><ChartBarIcon/></div>{img.popularity}</span>
                   </div>
                   {img.overview ?
-                  <p className="p-1 mt-2 overflow-auto border border-blue-500 rounded-md max-h-52 md:max-h-full">{img.overview}</p> :
+                  <div className="flex flex-col">
+                    <p className="p-1 mt-2 overflow-auto border border-blue-500 rounded-md max-h-52 md:max-h-80">{img.overview}</p>
+                  </div>
+                   :
                   null }
                   
                 </div>
