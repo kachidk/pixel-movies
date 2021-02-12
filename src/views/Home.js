@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Loader from '../components/Loader';
-import { HomeIcon, SearchIcon, StarIcon, ChartBarIcon, ArrowCircleUp } from '../assets/svg/Index'
+import { HomeIcon, SearchIcon, StarIcon, ChartBarIcon, ArrowCircleUp, UserGroup } from '../assets/svg/Index'
 import useGlobal from '../global';
 
 function Home() {
@@ -25,6 +25,7 @@ function Home() {
             title: movie.title,
             overview: movie.overview,
             voteAverage: movie.vote_average,
+            voteCount: movie.vote_count,
             popularity: movie.popularity
           })
           return acc;
@@ -85,30 +86,31 @@ function Home() {
     return (
         <>
         {loading && <Loader/>}
-          <main className="p-10">
+          <main className="md:p-10">
             <form onSubmit={e => { e.preventDefault() }}>
-              <div className="flex flex-col justify-center m-auto md:flex-row">
-              <button onClick={seeHome} className="p-2 text-2xl text-black uppercase bg-blue-300 rounded-md md:mr-4"><HomeIcon/></button>
+              <div className="flex flex-row items-center justify-center m-auto md:flex-row">
+              <button onClick={seeHome} className="h-full p-2 mr-2 text-2xl text-gray-100 uppercase bg-blue-500 rounded-md w-min md:mr-4"><HomeIcon/></button>
                 <input type="text" placeholder="SEARCH" className="h-10 pl-4 my-1 bg-gray-100 rounded-md lg:w-2/12 md:h-12 md:my-0"
                   value={searchTerm}
                   onKeyPress={handleKeyPress}
                   onChange={event => setSearchTerm(event.target.value)}
                 />
-                <button onClick={search} className="p-2 text-2xl text-black uppercase bg-blue-300 rounded-md md:ml-4"><SearchIcon/></button>
+                <button onClick={search} className="h-full p-2 ml-2 text-2xl text-gray-100 uppercase bg-blue-500 rounded-md w-min md:ml-4"><SearchIcon/></button>
               </div>
             </form>
-              <div className="flex flex-wrap justify-around">
+              <div className="flex flex-wrap justify-around text-gray-100">
                 {imgs.map((img, index) => 
-                  <div key={index} className="w-64 p-3 mx-2 mt-4 bg-purple-300 rounded-md">
+                  <div key={index} className="w-64 p-3 mx-2 mt-4 rounded-md bg-dark2">
                   <img src={img.poster} alt="" />
-                  <h3 className="text-xl font-extrabold">{img.title}</h3>
+                  <h3 className="text-xl font-extrabold text-blue-500">{img.title}</h3>
                     <p>{img.date}</p>
                   <div className="flex items-center">
-                    <span className="flex mr-2"><div className="w-6 h-6"><StarIcon/></div> {img.voteAverage}</span>
-                    <span className="flex"><div className="w-6 h-6"><ChartBarIcon/></div>{img.popularity}</span>
+                    <span className="flex mr-2"><div className="w-6 h-6 text-yellow-400"><StarIcon/></div> {img.voteAverage}</span>
+                    <span className="flex mr-2"><div className="w-6 h-6 text-blue-500 mr-0.5"><UserGroup/></div>{img.voteCount}</span>
+                    <span className="flex"><div className="w-6 h-6 text-blue-500"><ChartBarIcon/></div>{img.popularity}</span>
                   </div>
                   {img.overview ?
-                  <p className="p-1 mt-2 overflow-auto border rounded-md max-h-52 md:max-h-full">{img.overview}</p> :
+                  <p className="p-1 mt-2 overflow-auto border border-blue-500 rounded-md max-h-52 md:max-h-full">{img.overview}</p> :
                   null }
                   
                 </div>
@@ -116,7 +118,7 @@ function Home() {
               </div>
           </main>  
           <footer className="flex justify-end mb-4 mr-5">
-            <div className="w-16 h-16 animate-bounce" onClick={topFunction}>
+            <div className="w-16 h-16 text-blue-500 animate-bounce" onClick={topFunction}>
               <ArrowCircleUp/>
             </div>
           </footer>
