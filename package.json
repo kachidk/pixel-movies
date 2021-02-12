@@ -8,14 +8,18 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "tailwindcss": "^2.0.1-compat",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run css && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "npm run css && react-scripts start",
+    "css": "tailwind build ./src/assets/css/tailwind.css -o ./src/assets/css/tailwind.output.css"
   },
   "eslintConfig": {
     "extends": [
